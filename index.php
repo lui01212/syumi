@@ -18,7 +18,7 @@ define('WP_USE_THEMES', true);
 ?>
 <?php
 $val = 'aloa';
-$stringInt = 'ssss22dsdsd';
+$stringInt = 'ssss22dsdsd'; 
 $ep = (int)$stringInt;
 $int = 2 + 3 ;
 define('luyn','oke');
