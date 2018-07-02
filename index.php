@@ -31,7 +31,7 @@ var_dump($int >1);
 //for($ix = 0 ;$ix < count($array) ;$ix ++){
 //    echo $array[$ix];
 //}
-foreach($array as $key => $indexx){
-    echo  $key .'=>'.$indexx;
-}
+//foreach($array as $key => $indexx){
+//    echo  $key .'=>'.$indexx;
+//}
 ?>
