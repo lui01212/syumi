@@ -82,7 +82,13 @@ class MyFristController extends Controller
         //
     }
     public function getController($name,$age){
-        $data['kaka'] = ['kakakakak','hghghghgh'];
+        $data['kaka'] = 5;
         return view('MyFristView',$data);
+    }
+    public function getPost(){
+        return view('post');
+    }
+    public function getCatagory(){
+        return view('catagory');
     }
 }
