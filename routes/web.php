@@ -14,3 +14,4 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/view/{name}/{age}','MyFristController@getController');
