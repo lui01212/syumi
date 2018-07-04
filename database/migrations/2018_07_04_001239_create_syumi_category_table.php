@@ -20,6 +20,7 @@ class CreateSyumiCategoryTable extends Migration
             $table->string('Cat_name');
 
             $table->string('Cat_slug');
+            $table->timestamp('created_at')->nullable();
 
         });
     }
