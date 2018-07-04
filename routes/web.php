@@ -20,3 +20,15 @@ Route::get('/post','MyFristController@getPost');
 //
 Route::get('/catagory','MyFristController@getCatagory');
 
+Route::get('db',function(){
+
+	$arr = [
+        	'name' 		=> 'user',
+        	'username' 	=> 'name',
+        	'password' 	=> md5('bokinhvan'),
+        	'level'		=> 2
+        ];
+        DB::table('users')->where('username','=','user') -> update($arr);
+        return dd('update thanh cong');
+
+});
