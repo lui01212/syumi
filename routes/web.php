@@ -20,15 +20,8 @@ Route::get('/post','MyFristController@getPost');
 //
 Route::get('/catagory','MyFristController@getCatagory');
 
-Route::get('db',function(){
+Route::get('db','MyFristController@updateUser');
 
-	$arr = [
-        	'name' 		=> 'user',
-        	'username' 	=> 'name',
-        	'password' 	=> md5('bokinhvan'),
-        	'level'		=> 2
-        ];
-        DB::table('users')->where('username','=','user') -> update($arr);
-        return dd('update thanh cong');
+Route::get('insert','MyFristController@insertUser');
 
-});
+Route::get('login','MyFristController@getLogin');

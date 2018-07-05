@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use DB;
+
 class MyFristController extends Controller
 {
     /**
@@ -90,5 +92,28 @@ class MyFristController extends Controller
     }
     public function getCatagory(){
         return view('catagory');
+    }
+    public function updateUser(){
+        $arr = [
+            'name'      => 'user',
+            'username'  => 'name',
+            'password'  => md5('bokinhvan'),
+            'level'     => 2
+        ];
+        DB::table('users')->where('username','=','user') -> update($arr);
+        return dd('update thanh cong');
+    }
+    public function insertUser(){
+        $arr = [
+            'name'      => 'user1',
+            'username'  => 'name1',
+            'password'  => md5('bokinhvan'),
+            'level'     => 1
+        ];
+        DB::table('users')-> insert($arr);
+        return dd('insert thanh cong');
+    }
+    public function getLogin(){
+        return view('admin.login.view');
     }
 }
