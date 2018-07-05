@@ -25,3 +25,5 @@ Route::get('db','MyFristController@updateUser');
 Route::get('insert','MyFristController@insertUser');
 
 Route::get('login','MyFristController@getLogin');
+
+Route::post('login','MyFristController@postLogin');

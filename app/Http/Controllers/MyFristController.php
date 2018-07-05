@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use DB;
 
+use Validator;
+
 class MyFristController extends Controller
 {
     /**
@@ -115,5 +117,37 @@ class MyFristController extends Controller
     }
     public function getLogin(){
         return view('admin.login.view');
+    }
+    public function postLogin(Request $request){
+
+        $user = $request['user'];
+
+        $password = $request['password'];
+
+        $rules = [
+         
+        'user'=>'required',
+         
+        'password'=>'required',
+         
+        ];
+         
+        $messages = [
+         
+        'user.required'=>'tài khoản không được để trống',
+         
+        'password.required'=>'mật khẩu không được để trống',
+         
+        ];
+         
+        $Validator = Validator::make($request->all(),$rules,$messages);
+         
+        if($Validator->fails()){
+            return   view('admin.login.view') -> withErrors($Validator);
+        }else{
+            echo $user.$password;
+        }
+        print_r($request->all());
+        // $this->validate($request,$rules,$messages);
     }
 }
