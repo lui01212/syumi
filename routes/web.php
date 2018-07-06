@@ -14,16 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/view/{name}/{age}','MyFristController@getController');
-//
-Route::get('/post','MyFristController@getPost');
-//
-Route::get('/catagory','MyFristController@getCatagory');
 
-Route::get('db','MyFristController@updateUser');
+Auth::routes();
 
-Route::get('insert','MyFristController@insertUser');
-
-Route::get('login','MyFristController@getLogin');
-
-Route::post('login','MyFristController@postLogin');
+Route::get('/home', 'HomeController@index')->name('home');

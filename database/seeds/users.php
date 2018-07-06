@@ -11,13 +11,10 @@ class users extends Seeder
      */
     public function run()
     {
-        //
-        $arr = [
-        	'name' 		=> 'admin',
-        	'username' 	=> 'lui01212',
-        	'password' 	=> md5('bokinhvan'),
-        	'level'		=> 1
-        ];
-        DB::table('users')->insert($arr);
+         DB::table('users')->insert([
+            'name' => str_random(10),
+            'email' => str_random(10).'@gmail.com',
+            'password' => bcrypt('secret'),
+        ]);
     }
 }
