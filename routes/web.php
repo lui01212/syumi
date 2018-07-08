@@ -12,9 +12,27 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('layouts.app');
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+//admin
+Route::group(['prefix' => 'admin'],function(){
+	//
+	Route::get('/','adminController@getAdminPage') -> name('admin');
+	//
+	Route::group(['prefix' => 'storyMaster'],function(){
+		//
+		Route::get('/','storyTypeController@getStoryMaster') -> name('storyMaster.show');
+		//
+		Route::post('/','storyTypeController@postAddStoryMaster') -> name('storyMaster.create');
+		//
+		Route::post('/edit','storyTypeController@postEditStoryMaster') -> name('storyMaster.edit');
+		//
+		Route::get('/delete/{id}','storyTypeController@postDeleteStoryMaster');
+	});
+	//
+});
