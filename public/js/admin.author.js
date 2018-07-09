@@ -1,5 +1,5 @@
 // ----------------------------------------------------------------------------------
-// - ﾌｧｲﾙ名    ： admin.story.js
+// - ﾌｧｲﾙ名    ： admin.author.js
 // - 備　考    ： なし
 // -           
 // -             [ 命名規則 ]
@@ -90,12 +90,12 @@ function OnJscChangeFrom(evt){
 // -----------------------------------------------------------------
 function OnJscAddFrom(){
     //
-    var typeid      = $(this).attr('typeid');
-    var typename    = $(this).attr('typename');
+    var authorId      = $(this).attr('authorId');
+    var authorName    = $(this).attr('authorName');
     var flag        = $(this).attr('flag');
     //
-    $('#typeId').val(typeid);
-    $('#typeNameAdd').val(typename);
+    $('#authorId').val(authorId);
+    $('#authorNameAdd').val(authorName);
     $("input[name=flag][value=" + flag + "]").prop('checked', true);
     //
 }
@@ -109,10 +109,10 @@ function OnJscAddData(e){
    //
    e.preventDefault();
    var oData = new Object();
-   oData.typeName = $('#typeNameAdd').val();
-   oData.typeId   = $('#typeId').val();
+   oData.authorName = $('#authorNameAdd').val();
+   oData.authorId   = $('#authorId').val();
    oData.flag     = $("input[name=flag]:checked").val();
-
+   //
    OnJscAddDataAjax(oData);
 }
 // -----------------------------------------------------------------
@@ -132,9 +132,10 @@ function OnJscAddDataAjax(oData){
         url : $('.edit_change').attr('action'),
         type : "post",
         dataType:"text",
-        data : {typeName : oData.typeName ,typeId : oData.typeId , flag : oData.flag
+        data : {authorName : oData.authorName ,authorId : oData.authorId , flag : oData.flag
         },
         success : function (result){
+
           if (JSON.parse(result).Status = STATUS_NORMAL) {
             //
             if($('.alert-success').hasClass('d-none')){

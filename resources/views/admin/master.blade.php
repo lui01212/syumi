@@ -11,7 +11,6 @@
     <!-- Scripts -->
     <script src="{{ asset('js/admin.js') }}" defer></script>
     <script src="{{asset('js/jquery.min.js')}}"></script>
-    <script src="{{ asset('js/admin.story.js') }}" defer></script>
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
@@ -19,6 +18,8 @@
 	<link href="{{ asset('css/app.css') }}" rel="stylesheet">
 	<link href="{{ asset('css/admin.css') }}" rel="stylesheet">
 	<link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'>
+	<!--  -->
+	@yield('head')
 </head>
 <body>
   <div id="responsive-admin-menu">
@@ -37,6 +38,8 @@
 				<div id="media-sub" style="display: none;">
 					<a href="{{ route('storyMaster.show') }}" title="Thể Loại"><i class="icon-film"></i><span>  
 					{{ __('Thể Loại') }}</span></a>
+					<a href="{{ route('authorMaster.show') }}" title="Tác Giả"><i class="icon-picture"></i><span>  
+					{{ __('Tác Giả') }}</span></a>
 					<a href="" title="Danh Mục"><i class="icon-picture"></i><span>  
 					{{ __('Danh Mục') }}</span></a>
 				</div>

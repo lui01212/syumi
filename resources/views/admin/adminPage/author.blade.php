@@ -1,7 +1,7 @@
 @extends('admin.master')
 
 @section('head')
-<script src="{{ asset('js/admin.story.js') }}" defer></script>
+<script src="{{ asset('js/admin.author.js') }}" defer></script>
 @endsection
 
 @section('content')
@@ -9,36 +9,36 @@
 	<div class="row justify-content-center">
 		<div class="col-md-8">
 			<div class="card">
-				<div class="card-header">{{ __('Thêm Loại Truyện') }}</div>
+				<div class="card-header">{{ __('Thêm Tác Giả') }}</div>
 				<div class="card-body">
-					<form class="add_change" method="POST" action="{{ route('storyMaster.create') }}">
+					<form class="add_change" method="POST" action="{{ route('authorMaster.create') }}">
 					@csrf
 					  <div class="form-row">
 					    <div class="form-group col">
-					      <label for="typeName">Loại Truyện</label>
-					      <input type="typeName" name="typeName" class="form-control" id="typeName" placeholder="Nhập Thể Loại..." >
-							@if ($errors->has('typeName'))
+					      <label for="authorName">Tên Tác Giả</label>
+					      <input type="authorName" name="authorName" class="form-control" id="authorName" placeholder="Nhập Tên Tác Giả..." >
+							@if ($errors->has('authorName'))
 							    <div class="alert alert-danger" role="alert">
-							        <strong>{{ $errors->first('typeName') }}</strong>
+							        <strong>{{ $errors->first('authorName') }}</strong>
                                 </div>
 							@endif
 					    </div>
 					  </div>
 					  <button type="submit" id="btn-add" class="btn btn-primary">Thêm</button>
 					</form>
-					<form class="edit_change" method="POST" action="{{ route('storyMaster.edit') }}" style="display: none;">
+					<form class="edit_change" method="POST" action="{{ route('authorMaster.edit') }}" style="display: none;">
 					@csrf
 					  <div class="form-row">
 						<div class="form-group col">
-					      <label for="typeId">Id</label>
-					      <input type="typeId" name="typeId" class="form-control" id="typeId" readonly>
+					      <label for="authorId">Id</label>
+					      <input type="authorId" name="authorId" class="form-control" id="authorId" readonly>
 					    </div>
 					    <div class="form-group col">
-					      <label for="typeName">Loại Truyện</label>
-					      <input type="typeName" name="typeName" class="form-control" id="typeNameAdd" required>
-							@if ($errors->has('typeName'))
+					      <label for="authorName">Tên Tác Giả</label>
+					      <input type="authorName" name="authorName" class="form-control" id="authorNameAdd" required>
+							@if ($errors->has('authorName'))
 							    <div class="alert alert-danger" role="alert">
-							        <strong>{{ $errors->first('typeName') }}</strong>
+							        <strong>{{ $errors->first('authorName') }}</strong>
                                 </div>
 							@endif
 					    </div>
@@ -89,23 +89,23 @@
 					    <thead>
 	                        <tr>
 	                            <th>ID</th>
-	                            <th>Loại Truyện</th>
+	                            <th>Tác Giả</th>
 	                            <th>Flag</th>
 	                            <th style="width: 110px;"><em class="fa fa-cog"></em></th>
 	                    </thead>
 	                    <tbody>
-	                    @foreach($storyType as $type)
+	                    @foreach($storyAuthor as $author)
 	                    	<tr>
-	                            <td>{{$type ->type_id}}</td>
-	                            <td>{{$type ->type_name}}</td>
-	                            <td>{{$type ->flag}}</td>
-	                            <td><a class="btn btn-default btn-edit border" typeid="{{$type ->type_id}}" typename="{{$type ->type_name}}" flag="{{$type ->flag}}"><em class="fa fa-pencil"></em></a>
-                              	<a class="btn btn-danger btn-delete" href="storyMaster/delete/{{$type ->type_id}}" typeid="{{$type ->type_id}}"><em class="fa fa-trash"></em></a></td>
+	                            <td>{{$author ->author_id}}</td>
+	                            <td>{{$author ->author_name}}</td>
+	                            <td>{{$author ->flag}}</td>
+	                            <td><a class="btn btn-default btn-edit border" authorId="{{$author ->author_id}}" authorName="{{$author ->author_name}}" flag="{{$author ->flag}}"><em class="fa fa-pencil"></em></a>
+                              	<a class="btn btn-danger btn-delete" href="authorMaster/delete/{{$author ->author_id}}" authorid="{{$author ->author_id}}"><em class="fa fa-trash"></em></a></td>
 	                        </tr>
 	                    @endforeach
 	                    </tbody>
 				</table>
-				{!! $storyType->render() !!}
+				{!! $storyAuthor->render() !!}
 			</div>
 		</div>
 		</div>

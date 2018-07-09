@@ -18,12 +18,17 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
+//-----------------------------------------------------------------------
 //admin
+//-----------------------------------------------------------------------
 Route::group(['prefix' => 'admin'],function(){
-	//
+	//-----------------------------------------------------------------------
+	//adminMaster
+	//-----------------------------------------------------------------------
 	Route::get('/','adminController@getAdminPage') -> name('admin');
-	//
+	//-----------------------------------------------------------------------
+	//storyMaster
+	//-----------------------------------------------------------------------
 	Route::group(['prefix' => 'storyMaster'],function(){
 		//
 		Route::get('/','storyTypeController@getStoryMaster') -> name('storyMaster.show');
@@ -33,6 +38,19 @@ Route::group(['prefix' => 'admin'],function(){
 		Route::post('/edit','storyTypeController@postEditStoryMaster') -> name('storyMaster.edit');
 		//
 		Route::get('/delete/{id}','storyTypeController@postDeleteStoryMaster');
+	});
+	//-----------------------------------------------------------------------
+	//authorMaster
+	//-----------------------------------------------------------------------
+	Route::group(['prefix' => 'authorMaster'],function(){
+		//
+		Route::get('/','AuthorStoryController@getAuthorMaster') -> name('authorMaster.show');
+		//
+		Route::post('/','AuthorStoryController@postAddAuthorMaster') -> name('authorMaster.create');
+		//
+		Route::post('/edit','AuthorStoryController@postEditAuthorMaster') -> name('authorMaster.edit');
+		//
+		Route::get('/delete/{id}','AuthorStoryController@postDeleteAuthorMaster');
 	});
 	//
 });
