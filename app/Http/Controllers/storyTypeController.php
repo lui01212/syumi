@@ -4,22 +4,34 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Http\Requests\storyTypeRequest;
+
 use App\storyType;
 
 class storyTypeController extends Controller
 {
-    //
-    // story_type::all();
+     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function getStoryMaster(Request $request)
     {
         if($request->ajax() || 'NULL')
         {
-            $storyType = storyType::paginate(2);
+            $storyType = storyType::paginate(5);
         	// return view('admin.adminPage.story') ->with('storyType',$storyType);
+            if ($request->ajax()) {
+                return view('admin.adminPage.storyDetail',compact('storyType'));
+            }
             return view('admin.adminPage.story', compact('storyType'));
         }
     }
-    public function postAddStoryMaster(Request $request)
+    public function postAddStoryMaster(storyTypeRequest $request)
     {
         //
         $typeName = $request->input('typeName');
@@ -28,10 +40,10 @@ class storyTypeController extends Controller
         $storyTypeShow ->flag = 1;
         $storyTypeShow ->save();
         //
-    	$storyType = storyType::paginate(2);
+    	$storyType = storyType::paginate(5);
         return view('admin.adminPage.story') ->with('storyType',$storyType);
     }
-    public function postEditStoryMaster(Request $request)
+    public function postEditStoryMaster(storyTypeRequest $request)
     {
         if($request->ajax() || 'NULL'){
         //
@@ -40,9 +52,10 @@ class storyTypeController extends Controller
         $flag      = $request->input('flag');
         $storyTypeEdid = storyType::where('type_id',$typeId)->update(['type_name'=>$typeName,'flag' => $flag]);
         //
-        $storyType = storyType::paginate(2);
-        // return view('admin.adminPage.story',compact('storyType'));
-        echo $storyType;
+        // $storyType = storyType::paginate(2);
+        // return view('admin.adminPage.storyDetail',compact('storyType'));
+        $data['Status'] = 'NORMAL';
+        return $data;
         }
     }
     public function postDeleteStoryMaster($id)
@@ -50,7 +63,9 @@ class storyTypeController extends Controller
         //
         $storyTypeEdid = storyType::where('type_id',$id)->update(['flag'=>2]);
         //
-        $storyType = storyType::paginate(2);
-        return view('admin.adminPage.story') ->with('storyType',$storyType);
+        // $storyType = storyType::paginate(2);
+        // return view('admin.adminPage.story') ->with('storyType',$storyType);
+        $data['Status'] = 'NORMAL';
+        return $data;
     }
 }

@@ -12,7 +12,12 @@
 					  <div class="form-row">
 					    <div class="form-group col">
 					      <label for="typeName">Loại Truyện</label>
-					      <input type="typeName" name="typeName" class="form-control" id="typeName" placeholder="Nhập Thể Loại...">
+					      <input type="typeName" name="typeName" class="form-control" id="typeName" placeholder="Nhập Thể Loại..." >
+							@if ($errors->has('typeName'))
+							    <div class="alert alert-danger" role="alert">
+							        <strong>{{ $errors->first('typeName') }}</strong>
+                                </div>
+							@endif
 					    </div>
 					  </div>
 					  <button type="submit" id="btn-add" class="btn btn-primary">Thêm</button>
@@ -26,7 +31,12 @@
 					    </div>
 					    <div class="form-group col">
 					      <label for="typeName">Loại Truyện</label>
-					      <input type="typeName" name="typeName" class="form-control" id="typeNameAdd">
+					      <input type="typeName" name="typeName" class="form-control" id="typeNameAdd" required>
+							@if ($errors->has('typeName'))
+							    <div class="alert alert-danger" role="alert">
+							        <strong>{{ $errors->first('typeName') }}</strong>
+                                </div>
+							@endif
 					    </div>
 					  </div>
 					 <fieldset class="form-group">
@@ -53,6 +63,11 @@
 				</div>
 			</div>
 		</div>
+		<div class="col-md-8" id="i_alert">
+			<div class="alert alert-success d-none">
+			  <!-- <strong>Success!</strong> Sửa thành công!. -->
+			</div>
+		</div>
 	</div>
 	<div class="container mt-5">
 		<div class="row">
@@ -64,7 +79,7 @@
 	<div class="container mt-5">
 		<div class="row">
 			<!-- <h2>Thể loại truyện</h2> -->
-			<div class="col-md-12">
+			<div class="col-md-12" id="i-pagination">
 			<div class="table-responsive">
 				<table class="table table-bordered">
 					    <thead>
@@ -90,6 +105,5 @@
 			</div>
 		</div>
 		</div>
-
 	</div>
 @endsection

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 08, 2018 at 04:54 PM
+-- Generation Time: Jul 09, 2018 at 12:07 PM
 -- Server version: 10.1.33-MariaDB
 -- PHP Version: 7.2.6
 
@@ -81,17 +81,20 @@ CREATE TABLE `story_type` (
 --
 
 INSERT INTO `story_type` (`type_id`, `type_name`, `flag`, `created_at`, `updated_at`) VALUES
-(2, 'Tiên Hiệp', 1, '2018-07-07 16:34:13', '2018-07-08 07:50:36'),
-(3, 'Khoa Huyễn', 1, '2018-07-07 16:34:25', '2018-07-08 01:00:54'),
-(4, 'Ngôn Tình', 1, '2018-07-07 17:39:50', '2018-07-08 07:19:19'),
+(2, 'Tiên Hiệp', 1, '2018-07-07 16:34:13', '2018-07-09 00:38:48'),
+(3, 'Khoa Huyễn', 1, '2018-07-07 16:34:25', '2018-07-08 21:09:34'),
+(4, 'Ngôn Tình', 1, '2018-07-07 17:39:50', '2018-07-08 20:58:59'),
 (5, 'Xuyên Không', 1, '2018-07-07 17:40:21', '2018-07-07 21:04:36'),
-(6, 'Đô Thị', 1, '2018-07-07 17:42:14', '2018-07-08 07:50:48'),
+(6, 'Đô Thị', 1, '2018-07-07 17:42:14', '2018-07-08 21:41:39'),
 (7, 'Kiếm HIệp', 1, '2018-07-07 17:43:51', '2018-07-08 05:44:40'),
-(8, 'Võng Du', 1, '2018-07-07 19:28:55', '2018-07-07 19:28:55'),
-(9, 'Huyền huyễn', 1, '2018-07-07 21:49:31', '2018-07-08 00:27:18'),
-(10, 'Truyện Teen', 1, '2018-07-07 21:50:04', '2018-07-07 21:50:04'),
+(8, 'Võng Du', 1, '2018-07-07 19:28:55', '2018-07-08 23:23:26'),
+(9, 'Huyền huyễn', 1, '2018-07-07 21:49:31', '2018-07-08 21:09:54'),
+(10, 'Truyện Teen', 1, '2018-07-07 21:50:04', '2018-07-08 21:40:27'),
 (11, 'Trọng Sinh', 1, '2018-07-07 23:31:19', '2018-07-07 23:31:19'),
-(12, 'Đam Mỹ', 1, '2018-07-08 00:29:57', '2018-07-08 00:29:57');
+(12, 'Đam Mỹ', 1, '2018-07-08 00:29:57', '2018-07-08 00:29:57'),
+(13, 'Viễn Tưởng', 1, '2018-07-08 23:54:25', '2018-07-08 23:54:25'),
+(14, 'Tiên Hiệp', 2, '2018-07-09 00:05:50', '2018-07-09 00:16:56'),
+(15, 'Trinh Thám', 1, '2018-07-09 00:06:34', '2018-07-09 00:06:34');
 
 -- --------------------------------------------------------
 
@@ -115,7 +118,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'uHsvmW0pK3', 'YuGjXwaODQ@gmail.com', '$2y$10$TcgnAa/cQwYa..iSZupH/.2IQNxJKvEy2MV9DP13TBFz88q6fQqxe', NULL, NULL, NULL),
-(2, 'lui01212', 'bvl0165@gmail.com', '$2y$10$RB2HP94ChLjYdWCdaes9JO74WAdapaSwTOJkM/FUnPlN40sD4hQsG', 'C4GQckATmZEozvPI6f75gJ9WKYiiMO3YgdgFtVOwq7h2Xwe9tLNc890m2LOL', '2018-07-05 19:36:26', '2018-07-05 19:36:26');
+(2, 'lui01212', 'bvl0165@gmail.com', '$2y$10$RB2HP94ChLjYdWCdaes9JO74WAdapaSwTOJkM/FUnPlN40sD4hQsG', 'UiiRPHtfSN9Wy1mIgWhVsyGT2nleT9xH1Fm70io59NX2Fpe9Dzczys74dNjB', '2018-07-05 19:36:26', '2018-07-05 19:36:26');
 
 --
 -- Indexes for dumped tables
@@ -160,7 +163,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `story_type`
 --
 ALTER TABLE `story_type`
-  MODIFY `type_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `type_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `users`
