@@ -17,7 +17,7 @@
 	<!-- Styles -->
 	<link href="{{ asset('css/app.css') }}" rel="stylesheet">
 	<link href="{{ asset('css/admin.css') }}" rel="stylesheet">
-	<link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'>
+	<link rel='stylesheet prefetch' href='https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
 	<!--  -->
 	@yield('head')
 </head>
@@ -40,6 +40,8 @@
 					{{ __('Thể Loại') }}</span></a>
 					<a href="{{ route('authorMaster.show') }}" title="Tác Giả"><i class="icon-picture"></i><span>  
 					{{ __('Tác Giả') }}</span></a>
+					<a href="{{ route('listStoryMaster.show') }}" title="Danh Sách Truyện"><i class="icon-film"></i><span>  
+					{{ __('Danh Sách Truyện') }}</span></a>
 					<a href="" title="Danh Mục"><i class="icon-picture"></i><span>  
 					{{ __('Danh Mục') }}</span></a>
 				</div>

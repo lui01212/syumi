@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 10, 2018 at 02:17 AM
+-- Generation Time: Jul 10, 2018 at 11:52 AM
 -- Server version: 10.1.33-MariaDB
 -- PHP Version: 7.2.6
 
@@ -25,6 +25,30 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `list_stories`
+--
+
+CREATE TABLE `list_stories` (
+  `story_id` int(10) UNSIGNED NOT NULL,
+  `story_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `author_id` int(10) UNSIGNED NOT NULL,
+  `story_image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `story_intro` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `story_rating` int(10) UNSIGNED NOT NULL,
+  `story_view` int(10) UNSIGNED NOT NULL,
+  `story_sum_chapter` int(10) UNSIGNED NOT NULL,
+  `story_source` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `story_status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `story_price` int(11) NOT NULL,
+  `update_id` int(11) NOT NULL,
+  `flag` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `migrations`
 --
 
@@ -42,7 +66,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (1, '2014_10_12_000000_create_users_table', 1),
 (2, '2014_10_12_100000_create_password_resets_table', 1),
 (3, '2018_07_07_075208_create_story_type_table', 2),
-(4, '2018_07_09_123245_story_author_migrate', 3);
+(12, '2018_07_09_123245_story_author_migrate', 3),
+(13, '2018_07_10_014807_create_list_stories_table', 3),
+(14, '2018_07_10_023651_list_story', 3);
 
 -- --------------------------------------------------------
 
@@ -76,15 +102,6 @@ CREATE TABLE `story_author` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `story_author`
---
-
-INSERT INTO `story_author` (`author_id`, `author_name`, `flag`, `created_at`, `updated_at`) VALUES
-(1, 'Thiên Tằm Thổ Đậu', 1, '2018-07-09 06:31:13', '2018-07-09 07:16:31'),
-(2, 'Ngã Cật Tây Hồng Thị', 2, '2018-07-09 06:32:07', '2018-07-09 07:16:50'),
-(3, 'Tiêu Thất Gia', 1, '2018-07-09 06:48:10', '2018-07-09 06:48:10');
 
 -- --------------------------------------------------------
 
@@ -140,11 +157,17 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'uHsvmW0pK3', 'YuGjXwaODQ@gmail.com', '$2y$10$TcgnAa/cQwYa..iSZupH/.2IQNxJKvEy2MV9DP13TBFz88q6fQqxe', NULL, NULL, NULL),
-(2, 'lui01212', 'bvl0165@gmail.com', '$2y$10$RB2HP94ChLjYdWCdaes9JO74WAdapaSwTOJkM/FUnPlN40sD4hQsG', 'mLVbPBtzJneTXBjRMX6xYPZcZWSbOD3qt2toWML9LmKbuxb9rOUihjWbnhWm', '2018-07-05 19:36:26', '2018-07-05 19:36:26');
+(2, 'lui01212', 'bvl0165@gmail.com', '$2y$10$RB2HP94ChLjYdWCdaes9JO74WAdapaSwTOJkM/FUnPlN40sD4hQsG', 'Ogwcrqhil4OdXRJIHIPmdqdKzRnyDp6roPR438dgE7WdEDwaMVN60jDAeLzB', '2018-07-05 19:36:26', '2018-07-05 19:36:26');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `list_stories`
+--
+ALTER TABLE `list_stories`
+  ADD PRIMARY KEY (`story_id`);
 
 --
 -- Indexes for table `migrations`
@@ -182,16 +205,22 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `list_stories`
+--
+ALTER TABLE `list_stories`
+  MODIFY `story_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `story_author`
 --
 ALTER TABLE `story_author`
-  MODIFY `author_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `author_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `story_type`

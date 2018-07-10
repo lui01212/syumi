@@ -34,7 +34,7 @@ html, body {
 	width: auto;
 	margin-left: 200px;
 	background-color: #ffffff;
-	height: 1200px;
+	min-height: 1200px;
 	padding: 15px;
 }
 
