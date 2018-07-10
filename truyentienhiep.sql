@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 09, 2018 at 12:07 PM
+-- Generation Time: Jul 10, 2018 at 02:17 AM
 -- Server version: 10.1.33-MariaDB
 -- PHP Version: 7.2.6
 
@@ -41,7 +41,8 @@ CREATE TABLE `migrations` (
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (1, '2014_10_12_000000_create_users_table', 1),
 (2, '2014_10_12_100000_create_password_resets_table', 1),
-(3, '2018_07_07_075208_create_story_type_table', 2);
+(3, '2018_07_07_075208_create_story_type_table', 2),
+(4, '2018_07_09_123245_story_author_migrate', 3);
 
 -- --------------------------------------------------------
 
@@ -65,6 +66,29 @@ INSERT INTO `password_resets` (`email`, `token`, `created_at`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `story_author`
+--
+
+CREATE TABLE `story_author` (
+  `author_id` int(10) UNSIGNED NOT NULL,
+  `author_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `flag` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `story_author`
+--
+
+INSERT INTO `story_author` (`author_id`, `author_name`, `flag`, `created_at`, `updated_at`) VALUES
+(1, 'Thiên Tằm Thổ Đậu', 1, '2018-07-09 06:31:13', '2018-07-09 07:16:31'),
+(2, 'Ngã Cật Tây Hồng Thị', 2, '2018-07-09 06:32:07', '2018-07-09 07:16:50'),
+(3, 'Tiêu Thất Gia', 1, '2018-07-09 06:48:10', '2018-07-09 06:48:10');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `story_type`
 --
 
@@ -81,20 +105,18 @@ CREATE TABLE `story_type` (
 --
 
 INSERT INTO `story_type` (`type_id`, `type_name`, `flag`, `created_at`, `updated_at`) VALUES
-(2, 'Tiên Hiệp', 1, '2018-07-07 16:34:13', '2018-07-09 00:38:48'),
-(3, 'Khoa Huyễn', 1, '2018-07-07 16:34:25', '2018-07-08 21:09:34'),
-(4, 'Ngôn Tình', 1, '2018-07-07 17:39:50', '2018-07-08 20:58:59'),
+(2, 'Tiên Hiệp', 1, '2018-07-07 16:34:13', '2018-07-09 07:09:49'),
+(3, 'Khoa Huyễn', 1, '2018-07-07 16:34:25', '2018-07-08 01:00:54'),
+(4, 'Ngôn Tình', 1, '2018-07-07 17:39:50', '2018-07-08 07:19:19'),
 (5, 'Xuyên Không', 1, '2018-07-07 17:40:21', '2018-07-07 21:04:36'),
-(6, 'Đô Thị', 1, '2018-07-07 17:42:14', '2018-07-08 21:41:39'),
+(6, 'Đô Thị', 1, '2018-07-07 17:42:14', '2018-07-09 05:14:29'),
 (7, 'Kiếm HIệp', 1, '2018-07-07 17:43:51', '2018-07-08 05:44:40'),
-(8, 'Võng Du', 1, '2018-07-07 19:28:55', '2018-07-08 23:23:26'),
-(9, 'Huyền huyễn', 1, '2018-07-07 21:49:31', '2018-07-08 21:09:54'),
-(10, 'Truyện Teen', 1, '2018-07-07 21:50:04', '2018-07-08 21:40:27'),
+(8, 'Võng Du', 1, '2018-07-07 19:28:55', '2018-07-07 19:28:55'),
+(9, 'Huyền huyễn', 1, '2018-07-07 21:49:31', '2018-07-08 00:27:18'),
+(10, 'Truyện Teen', 1, '2018-07-07 21:50:04', '2018-07-07 21:50:04'),
 (11, 'Trọng Sinh', 1, '2018-07-07 23:31:19', '2018-07-07 23:31:19'),
 (12, 'Đam Mỹ', 1, '2018-07-08 00:29:57', '2018-07-08 00:29:57'),
-(13, 'Viễn Tưởng', 1, '2018-07-08 23:54:25', '2018-07-08 23:54:25'),
-(14, 'Tiên Hiệp', 2, '2018-07-09 00:05:50', '2018-07-09 00:16:56'),
-(15, 'Trinh Thám', 1, '2018-07-09 00:06:34', '2018-07-09 00:06:34');
+(13, 'Tiên Hiệp', 1, '2018-07-09 07:08:08', '2018-07-09 07:08:08');
 
 -- --------------------------------------------------------
 
@@ -118,7 +140,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'uHsvmW0pK3', 'YuGjXwaODQ@gmail.com', '$2y$10$TcgnAa/cQwYa..iSZupH/.2IQNxJKvEy2MV9DP13TBFz88q6fQqxe', NULL, NULL, NULL),
-(2, 'lui01212', 'bvl0165@gmail.com', '$2y$10$RB2HP94ChLjYdWCdaes9JO74WAdapaSwTOJkM/FUnPlN40sD4hQsG', 'UiiRPHtfSN9Wy1mIgWhVsyGT2nleT9xH1Fm70io59NX2Fpe9Dzczys74dNjB', '2018-07-05 19:36:26', '2018-07-05 19:36:26');
+(2, 'lui01212', 'bvl0165@gmail.com', '$2y$10$RB2HP94ChLjYdWCdaes9JO74WAdapaSwTOJkM/FUnPlN40sD4hQsG', 'mLVbPBtzJneTXBjRMX6xYPZcZWSbOD3qt2toWML9LmKbuxb9rOUihjWbnhWm', '2018-07-05 19:36:26', '2018-07-05 19:36:26');
 
 --
 -- Indexes for dumped tables
@@ -135,6 +157,12 @@ ALTER TABLE `migrations`
 --
 ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`);
+
+--
+-- Indexes for table `story_author`
+--
+ALTER TABLE `story_author`
+  ADD PRIMARY KEY (`author_id`);
 
 --
 -- Indexes for table `story_type`
@@ -157,13 +185,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `story_author`
+--
+ALTER TABLE `story_author`
+  MODIFY `author_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `story_type`
 --
 ALTER TABLE `story_type`
-  MODIFY `type_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `type_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `users`
