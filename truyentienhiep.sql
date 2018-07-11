@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 10, 2018 at 11:52 AM
+-- Generation Time: Jul 11, 2018 at 02:28 AM
 -- Server version: 10.1.33-MariaDB
 -- PHP Version: 7.2.6
 
@@ -103,6 +103,18 @@ CREATE TABLE `story_author` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `story_author`
+--
+
+INSERT INTO `story_author` (`author_id`, `author_name`, `flag`, `created_at`, `updated_at`) VALUES
+(1, 'Ngã Cật Tây Hồng Thị', 1, '2018-07-10 05:39:01', '2018-07-10 05:39:01'),
+(2, 'Mị Dạ Thủy Thảo', 1, '2018-07-10 05:39:38', '2018-07-10 05:39:38'),
+(3, 'Thiên Tằm Thổ Đậu', 1, '2018-07-10 05:39:50', '2018-07-10 05:39:50'),
+(4, 'Tiêu Thất Gia', 1, '2018-07-10 05:39:54', '2018-07-10 05:39:54'),
+(5, 'Chọn Tác Giả...', 1, '2018-07-10 06:50:03', '2018-07-10 06:50:03'),
+(6, 'Chọn Tác Giả...', 1, '2018-07-10 06:50:10', '2018-07-10 06:50:10');
+
 -- --------------------------------------------------------
 
 --
@@ -157,7 +169,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'uHsvmW0pK3', 'YuGjXwaODQ@gmail.com', '$2y$10$TcgnAa/cQwYa..iSZupH/.2IQNxJKvEy2MV9DP13TBFz88q6fQqxe', NULL, NULL, NULL),
-(2, 'lui01212', 'bvl0165@gmail.com', '$2y$10$RB2HP94ChLjYdWCdaes9JO74WAdapaSwTOJkM/FUnPlN40sD4hQsG', 'Ogwcrqhil4OdXRJIHIPmdqdKzRnyDp6roPR438dgE7WdEDwaMVN60jDAeLzB', '2018-07-05 19:36:26', '2018-07-05 19:36:26');
+(2, 'lui01212', 'bvl0165@gmail.com', '$2y$10$RB2HP94ChLjYdWCdaes9JO74WAdapaSwTOJkM/FUnPlN40sD4hQsG', '03C3QPwHShGjlyvB5enwvFuIg7PK1WrBzWmQKGAw2MXbdH0oPRjQzqEgeklX', '2018-07-05 19:36:26', '2018-07-05 19:36:26');
 
 --
 -- Indexes for dumped tables
@@ -220,7 +232,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `story_author`
 --
 ALTER TABLE `story_author`
-  MODIFY `author_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `author_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `story_type`
