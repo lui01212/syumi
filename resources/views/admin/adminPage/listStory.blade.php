@@ -11,7 +11,7 @@
 			<div class="card">
 				<div class="card-header">{{ __('Thêm Truyện') }}</div>
 				<div class="card-body">
-					<form class="add_change" method="POST" action="{{ route('authorMaster.create') }}" enctype="multipart/form-data">
+					<form class="add_change" method="POST" action="{{ route('listStoryMaster.create') }}" enctype="multipart/form-data">
 					@csrf
 					<div class="container">
 						<div class="row">
@@ -39,8 +39,8 @@
 									@endif
 							    </div>
 							    <div class="form-group col">
-							      <label for="authorName">Tác Giả</label>
-							      <select class="form-control" name="authorName" id="authorName">
+							      <label for="authorId">Tác Giả</label>
+							      <select class="form-control" name="authorId" id="authorId">
 								      	<option selected>Chọn Tác Giả...</option>
 								   @foreach($storyAuthor as $author )
 		        						<option value="{{$author ->author_id}}">{{$author ->author_name}}</option>
@@ -60,10 +60,9 @@
 							    </div>
 							    <div class="form-group col-md-4">
 							      <label for="storyType">Loại Truyện</label>
-							      <select class="form-control" name="storyType" id="storyType">
-								      	<option selected>Chọn Loại Truyện...</option>
+							      <select multiple  class="form-control" name="storyType[]" id="storyType">
 		        					@foreach($storyType as $type)
-		        						<option value="{{$type ->type_id}}">{{$type ->type_name}}</option>
+		        						<option >{{$type ->type_name}}</option>
 		        					@endforeach
 								  </select>
 							    </div>
@@ -182,10 +181,11 @@
 			</div>
 		</div>
 	</div>
+</div>
 	<div class="container mt-5">
 		<div class="row">
 			<div class="col-md-2">
-			<a class="btn btn-default btn-add border"><em class="fa fa-plus-square fa-2x" style="color:#007bff"></em></a>
+			<a class="btn btn-default btn-add border" href ="{{ route('listStoryMaster.test') }}"><em class="fa fa-plus-square fa-2x" style="color:#007bff"></em></a>
 			</div>
 		</div>
 	</div>
@@ -193,20 +193,66 @@
 		<div class="row">
 			<!-- <h2>Thể loại truyện</h2> -->
 			<div class="col-md-12" id="i-pagination">
-			<div class="table-responsive">
-				<table class="table table-bordered">
-					    <thead>
-	                        <tr>
-	                            <th>ID</th>
-	                            <th>Loại Truyện</th>
-	                            <th>Flag</th>
-	                            <th style="width: 110px;"><em class="fa fa-cog"></em></th>
-	                    </thead>
-	                    <tbody>
-	                    </tbody>
-				</table>
+				<div class="table-responsive">
+					<table class="table table-bordered">
+						    <thead>
+		                        <tr>
+		                            <th>Tên Truyện</th>
+		                            <th>Ảnh Đại Diện</th>
+		                            <th>Tác Giả</th>
+		                            <th>Nguồn</th>
+		                            <th>Loại Truyện</th>
+		                            <th>Số Chương</th>
+		                            <th>Lược Xem</th>
+		                            <th>Đánh Giá</th>
+		                            <th>Trạng Thái</th>
+		                            <th>Tính Phí</th>
+		                            <th>Flag</th>
+		                        </tr>
+		                    </thead>
+		                    <tbody>
+		                    @foreach($listStory as $story)
+	                    	<tr>
+	                            <td>{{$story ->story_name}}</td>
+	                            <td>
+	                            	<img src="{{ asset( 'images/' . $story ->story_image ) }}" alt="{{ $story ->story_image }}" width="120" height="120">
+	                            </td>
+	                            <td>{{$story ->author_name}}</td>
+	                            <td>{{$story ->story_source}}</td>
+	                            <td>{{$story ->story_type}}</td>
+	                            <td>{{$story ->story_sum_chapter}}</td>
+	                            <td>{{$story ->story_view}}</td>
+	                            <td>
+	                            	{{$story ->story_rating . __(' *')}}
+	                            </td>
+	                            <td>
+	                            	@if($story ->story_status == 1)
+	                            	{{__('Hoàn Thành')}}
+	                            	@else
+	                            	{{__('Đang Ra')}}
+	                            	@endif
+	                            </td>
+	                            <td>
+	                            	@if($story ->story_price == 1)
+	                            	{{__('Có Phí')}}
+	                            	@else
+	                            	{{__('Không Phí')}}
+	                            	@endif
+	                            </td>
+	                            <td>
+	                            	@if($story ->flag == 1)
+	                            	{{__('true')}}
+	                            	@else
+	                            	{{__('false')}}
+	                            	@endif
+	                            </td>
+	                        </tr>
+	                    	@endforeach
+		                    </tbody>
+					</table>
+					{!! $listStory->render() !!}
+				</div>
 			</div>
-		</div>
 		</div>
 	</div>
 	<!-- CKEDITOR -->

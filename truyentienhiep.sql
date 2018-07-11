@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 11, 2018 at 02:30 AM
+-- Generation Time: Jul 11, 2018 at 12:02 PM
 -- Server version: 10.1.33-MariaDB
 -- PHP Version: 7.2.6
 
@@ -33,6 +33,7 @@ CREATE TABLE `list_stories` (
   `story_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `author_id` int(10) UNSIGNED NOT NULL,
   `story_image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `story_type` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `story_intro` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `story_rating` int(10) UNSIGNED NOT NULL,
   `story_view` int(10) UNSIGNED NOT NULL,
@@ -65,10 +66,11 @@ CREATE TABLE `migrations` (
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (1, '2014_10_12_000000_create_users_table', 1),
 (2, '2014_10_12_100000_create_password_resets_table', 1),
-(3, '2018_07_07_075208_create_story_type_table', 2),
-(12, '2018_07_09_123245_story_author_migrate', 3),
-(13, '2018_07_10_014807_create_list_stories_table', 3),
-(14, '2018_07_10_023651_list_story', 3);
+(3, '2018_07_07_075208_create_story_type_table', 1),
+(4, '2018_07_09_123245_story_author_migrate', 1),
+(5, '2018_07_10_014807_create_list_stories_table', 1),
+(6, '2018_07_10_023651_list_story', 1),
+(7, '2018_07_11_022127_create_type_story_details_table', 1);
 
 -- --------------------------------------------------------
 
@@ -81,13 +83,6 @@ CREATE TABLE `password_resets` (
   `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `password_resets`
---
-
-INSERT INTO `password_resets` (`email`, `token`, `created_at`) VALUES
-('bvl0165@gmail.com', '$2y$10$3TyO923pTse7cFv5sTdgiuHM//To1FPbH.B3OyzJU4MLGs0uVx14i', '2018-07-06 05:02:37');
 
 -- --------------------------------------------------------
 
@@ -103,18 +98,6 @@ CREATE TABLE `story_author` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `story_author`
---
-
-INSERT INTO `story_author` (`author_id`, `author_name`, `flag`, `created_at`, `updated_at`) VALUES
-(1, 'Ngã Cật Tây Hồng Thị', 1, '2018-07-10 05:39:01', '2018-07-10 05:39:01'),
-(2, 'Mị Dạ Thủy Thảo', 1, '2018-07-10 05:39:38', '2018-07-10 05:39:38'),
-(3, 'Thiên Tằm Thổ Đậu', 1, '2018-07-10 05:39:50', '2018-07-10 05:39:50'),
-(4, 'Tiêu Thất Gia', 1, '2018-07-10 05:39:54', '2018-07-10 05:39:54'),
-(5, 'Chọn Tác Giả...', 1, '2018-07-10 06:50:03', '2018-07-10 06:50:03'),
-(6, 'Chọn Tác Giả...', 1, '2018-07-10 06:50:10', '2018-07-10 06:50:10');
-
 -- --------------------------------------------------------
 
 --
@@ -124,28 +107,25 @@ INSERT INTO `story_author` (`author_id`, `author_name`, `flag`, `created_at`, `u
 CREATE TABLE `story_type` (
   `type_id` int(10) UNSIGNED NOT NULL,
   `type_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `type_name_link` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `flag` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `story_type`
+-- Table structure for table `type_story_details`
 --
 
-INSERT INTO `story_type` (`type_id`, `type_name`, `flag`, `created_at`, `updated_at`) VALUES
-(2, 'Tiên Hiệp', 1, '2018-07-07 16:34:13', '2018-07-09 07:09:49'),
-(3, 'Khoa Huyễn', 1, '2018-07-07 16:34:25', '2018-07-08 01:00:54'),
-(4, 'Ngôn Tình', 1, '2018-07-07 17:39:50', '2018-07-08 07:19:19'),
-(5, 'Xuyên Không', 1, '2018-07-07 17:40:21', '2018-07-07 21:04:36'),
-(6, 'Đô Thị', 1, '2018-07-07 17:42:14', '2018-07-09 05:14:29'),
-(7, 'Kiếm HIệp', 1, '2018-07-07 17:43:51', '2018-07-08 05:44:40'),
-(8, 'Võng Du', 1, '2018-07-07 19:28:55', '2018-07-07 19:28:55'),
-(9, 'Huyền huyễn', 1, '2018-07-07 21:49:31', '2018-07-08 00:27:18'),
-(10, 'Truyện Teen', 1, '2018-07-07 21:50:04', '2018-07-07 21:50:04'),
-(11, 'Trọng Sinh', 1, '2018-07-07 23:31:19', '2018-07-07 23:31:19'),
-(12, 'Đam Mỹ', 1, '2018-07-08 00:29:57', '2018-07-08 00:29:57'),
-(13, 'Tiên Hiệp', 1, '2018-07-09 07:08:08', '2018-07-09 07:08:08');
+CREATE TABLE `type_story_details` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `story_id` int(11) NOT NULL,
+  `type_name_link` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -168,8 +148,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'uHsvmW0pK3', 'YuGjXwaODQ@gmail.com', '$2y$10$TcgnAa/cQwYa..iSZupH/.2IQNxJKvEy2MV9DP13TBFz88q6fQqxe', NULL, NULL, NULL),
-(2, 'lui01212', 'bvl0165@gmail.com', '$2y$10$RB2HP94ChLjYdWCdaes9JO74WAdapaSwTOJkM/FUnPlN40sD4hQsG', '03C3QPwHShGjlyvB5enwvFuIg7PK1WrBzWmQKGAw2MXbdH0oPRjQzqEgeklX', '2018-07-05 19:36:26', '2018-07-05 19:36:26');
+(1, 'lui01212', 'bvl0165@gmail.com', '$2y$10$0V5zjc4gIs2blPzt6Sq3..NQ6B55n4v8ap/WeYaPOrtLjyas4.89a', NULL, '2018-07-11 02:17:48', '2018-07-11 02:17:48');
 
 --
 -- Indexes for dumped tables
@@ -206,6 +185,12 @@ ALTER TABLE `story_type`
   ADD PRIMARY KEY (`type_id`);
 
 --
+-- Indexes for table `type_story_details`
+--
+ALTER TABLE `type_story_details`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -220,31 +205,37 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `list_stories`
 --
 ALTER TABLE `list_stories`
-  MODIFY `story_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `story_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `story_author`
 --
 ALTER TABLE `story_author`
-  MODIFY `author_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `author_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `story_type`
 --
 ALTER TABLE `story_type`
-  MODIFY `type_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `type_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `type_story_details`
+--
+ALTER TABLE `type_story_details`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

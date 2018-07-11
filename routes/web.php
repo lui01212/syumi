@@ -59,10 +59,11 @@ Route::group(['prefix' => 'admin'],function(){
 		//
 		Route::get('/','listStoryController@getListStoryMaster') -> name('listStoryMaster.show');
 		//
-		Route::post('/','listStoryController@postAddListStoryMaster') -> name('authorMaster.create');
+		Route::post('/','listStoryController@postAddListStoryMaster') -> name('listStoryMaster.create');
 		// //
 		// Route::post('/edit','AuthorStoryController@postEditAuthorMaster') -> name('authorMaster.edit');
 		// //
 		// Route::get('/delete/{id}','AuthorStoryController@postDeleteAuthorMaster');
+		Route::get('/test','listStoryController@postTest')-> name('listStoryMaster.test');;
 	});
 });

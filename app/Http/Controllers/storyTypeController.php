@@ -24,7 +24,6 @@ class storyTypeController extends Controller
         if($request->ajax() || 'NULL')
         {
             $storyType = storyType::paginate(5);
-        	// return view('admin.adminPage.story') ->with('storyType',$storyType);
             if ($request->ajax()) {
                 return view('admin.adminPage.storyDetail',compact('storyType'));
             }
@@ -37,6 +36,7 @@ class storyTypeController extends Controller
         $typeName = $request->input('typeName');
         $storyTypeShow = new storyType();
         $storyTypeShow ->type_name =$typeName;
+        $storyTypeShow ->type_name_link =str_slug($typeName);
         $storyTypeShow ->flag = 1;
         $storyTypeShow ->save();
         //
@@ -52,8 +52,6 @@ class storyTypeController extends Controller
         $flag      = $request->input('flag');
         $storyTypeEdid = storyType::where('type_id',$typeId)->update(['type_name'=>$typeName,'flag' => $flag]);
         //
-        // $storyType = storyType::paginate(2);
-        // return view('admin.adminPage.storyDetail',compact('storyType'));
         $data['Status'] = 'NORMAL';
         return $data;
         }
@@ -63,9 +61,8 @@ class storyTypeController extends Controller
         //
         $storyTypeEdid = storyType::where('type_id',$id)->update(['flag'=>2]);
         //
-        // $storyType = storyType::paginate(2);
-        // return view('admin.adminPage.story') ->with('storyType',$storyType);
         $data['Status'] = 'NORMAL';
+        //
         return $data;
     }
 }

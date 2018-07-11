@@ -18,6 +18,7 @@ class CreateListStoriesTable extends Migration
             $table->string('story_name');
             $table->integer('author_id') ->unsigned();
             $table->string('story_image');
+            $table->text('story_type');
             $table->text('story_intro');
             $table->integer('story_rating') ->unsigned();
             $table->integer('story_view') ->unsigned();

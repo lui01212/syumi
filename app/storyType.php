@@ -9,6 +9,6 @@ class storyType extends Model
     //
     protected $table = 'story_type';
     //
-    protected $fillable = ['type_id','type_name','flag'];
+    protected $fillable = ['type_id','type_name','type_name_link','flag'];
     //
 }

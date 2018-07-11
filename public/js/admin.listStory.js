@@ -37,7 +37,6 @@ function OnJscStartUp()
 {
     try
     {
-    	$('#editor1').val('a');
 
     }
     catch( ex )
