@@ -11,7 +11,7 @@
 			<div class="card">
 				<div class="card-header">{{ __('Thêm Truyện') }}</div>
 				<div class="card-body">
-					<form class="add_change" method="POST" action="{{ route('storyMaster.create') }}" enctype="multipart/form-data">
+					<form class="add_change" method="POST" action="{{ route('authorMaster.create') }}" enctype="multipart/form-data">
 					@csrf
 					<div class="container">
 						<div class="row">
@@ -42,25 +42,29 @@
 							      <label for="authorName">Tác Giả</label>
 							      <select class="form-control" name="authorName" id="authorName">
 								      	<option selected>Chọn Tác Giả...</option>
-		        						<option>...</option>
+								   @foreach($storyAuthor as $author )
+		        						<option value="{{$author ->author_id}}">{{$author ->author_name}}</option>
+		        					@endforeach
 								  </select>
 							    </div>
 							  </div>
 							  <div class="form-row">
 								<div class="form-group col-md-6">
-							      <label for="storyView">Nguồn</label>
-							      <input type="storyView" name="storyView" class="form-control" id="storyView" placeholder="Nhập Nguồn Truyện..." >
-									@if ($errors->has('storyView'))
+							      <label for="storySource">Nguồn</label>
+							      <input type="storySource" name="storySource" class="form-control" id="storySource" placeholder="Nhập Nguồn Truyện..." >
+									@if ($errors->has('storySource'))
 									    <div class="alert alert-danger" role="alert">
-									        <strong>{{ $errors->first('storyView') }}</strong>
+									        <strong>{{ $errors->first('storySource') }}</strong>
 		                                </div>
 									@endif
 							    </div>
 							    <div class="form-group col-md-4">
-							      <label for="storySource">Loại Truyện</label>
-							      <select class="form-control" name="storySource" id="storySource">
+							      <label for="storyType">Loại Truyện</label>
+							      <select class="form-control" name="storyType" id="storyType">
 								      	<option selected>Chọn Loại Truyện...</option>
-		        						<option>...</option>
+		        					@foreach($storyType as $type)
+		        						<option value="{{$type ->type_id}}">{{$type ->type_name}}</option>
+		        					@endforeach
 								  </select>
 							    </div>
 						    	<div class="form-group col-md-2">
@@ -86,56 +90,46 @@
 							    <div class="form-group col-md-3">
 							      <label for="storyRating">Đánh Giá</label>
 							      <select class="form-control" name="storyRating" id="storyRating">
-								      	<option selected>Đánh Giá...</option>
-		        						<option>1</option>
-		        						<option>2</option>
-		        						<option>3</option>
-		        						<option>4</option>
-		        						<option>5</option>
-		        						<option>6</option>
-		        						<option>7</option>
-		        						<option>8</option>
-		        						<option>9</option>
-		        						<option>10</option>
+								      	<option value="" selected>Đánh Giá...</option>
+		        						<option value="1">1</option>
+		        						<option value="2">2</option>
+		        						<option value="3">3</option>
+		        						<option value="4">4</option>
+		        						<option value="5">5</option>
+		        						<option value="6">6</option>
+		        						<option value="7">7</option>
+		        						<option value="8">8</option>
+		        						<option value="9">9</option>
+		        						<option value="10">10</option>
 								  </select>
 							    </div>
 							    <div class="form-group col-md-3">
 							      <label for="storyStatus">Trạng Thái</label>
 							      <select class="form-control" name="storyStatus" id="storyStatus">
-								      	<option selected>Trạng Thái...</option>
-		        						<option>Hoàn Thành</option>
-		        						<option>Đang Ra</option>
+								      	<option value="" selected>Trạng Thái...</option>
+		        						<option value="1">Hoàn Thành</option>
+		        						<option value="2">Đang Ra</option>
 								  </select>
 							    </div>
 							     <div class="form-group col-md-3">
 							      <label for="storyPrice">Tính Phí</label>
 							      <select class="form-control" name="storyPrice" id="storyPrice">
-								      	<option selected>Tính Phí...</option>
-		        						<option>Có</option>
-		        						<option>Không</option>
+								      	<option value="" selected>Tính Phí...</option>
+		        						<option value="1">Có</option>
+		        						<option value="2">Không</option>
 								  </select>
 							    </div>
 							</div>
 						</div>
 					</div>
 				</div>
-					  <!--  -->
-<!-- 					  	<div class="form-row">
-
-					</div> -->
-					<!--  -->
-
-					<!--  -->
 					<div class="form-row">
-					    
-
-					   
 					</div>
 					<!--  -->
 					<div class="form-row">
 						<div class="form-group col-md-12">
 						    <label for="storyIntro">Mô Tả</label>
-						    <textarea class="form-control" id="editor1"></textarea>
+						    <textarea  name="storyIntro" class="form-control" id="editor1"></textarea>
 						</div>
 					</div>
 					<!--  -->

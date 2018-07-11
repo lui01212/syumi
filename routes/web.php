@@ -53,13 +53,13 @@ Route::group(['prefix' => 'admin'],function(){
 		Route::get('/delete/{id}','AuthorStoryController@postDeleteAuthorMaster');
 	});
 	//-----------------------------------------------------------------------
-	//authorMaster
+	//listStoryMaster
 	//-----------------------------------------------------------------------
 	Route::group(['prefix' => 'listStoryMaster'],function(){
 		//
 		Route::get('/','listStoryController@getListStoryMaster') -> name('listStoryMaster.show');
 		//
-		// Route::post('/','AuthorStoryController@postAddAuthorMaster') -> name('authorMaster.create');
+		Route::post('/','listStoryController@postAddListStoryMaster') -> name('authorMaster.create');
 		// //
 		// Route::post('/edit','AuthorStoryController@postEditAuthorMaster') -> name('authorMaster.edit');
 		// //
