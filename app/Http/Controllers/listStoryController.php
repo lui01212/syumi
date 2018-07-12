@@ -95,4 +95,11 @@ class listStoryController extends Controller
         $listStory      = DB::table('list_stories') ->leftjoin('story_author','list_stories.author_id','=','story_author.author_id')->get();
         return $listStory;
     }
+    public function getData($id){
+
+            $listStory  = listStory::find($id);
+
+            return response()->json($listStory);
+
+    }
 }

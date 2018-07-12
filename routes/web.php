@@ -64,6 +64,8 @@ Route::group(['prefix' => 'admin'],function(){
 		// Route::post('/edit','AuthorStoryController@postEditAuthorMaster') -> name('authorMaster.edit');
 		// //
 		// Route::get('/delete/{id}','AuthorStoryController@postDeleteAuthorMaster');
-		Route::get('/test','listStoryController@postTest')-> name('listStoryMaster.test');;
+		Route::get('/test','listStoryController@postTest')-> name('listStoryMaster.test');
+
+		Route::get('/loadData/{id}','listStoryController@getData');
 	});
 });

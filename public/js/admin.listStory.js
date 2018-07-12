@@ -37,7 +37,9 @@ function OnJscStartUp()
 {
     try
     {
-
+    	//
+        $(document).on('click','.btn-edit',OnJscAddFrom);
+        //
     }
     catch( ex )
     {
@@ -53,4 +55,53 @@ function OnJspSelectImage(input) {
     var oSelected = new Object();
     oSelected.File = input.files[0];
     $('img.img-thumbnail').attr('src', URL.createObjectURL(oSelected.File));
+}
+// -----------------------------------------------------------------
+// - 関数名：データ追加
+// - 引　数：なし
+// - 戻り値：なし
+// - 備　考：なし
+// -----------------------------------------------------------------
+function OnJscAddFrom(e){
+  //
+  e.preventDefault();
+  //
+  var sURL = $(this).attr('href');
+  //
+  var sSrc = $('#' + $(this).attr('idImage')).attr('src');
+  if(sSrc.split('images')[1].length > 0) $('img.img-thumbnail').attr('src', $('#' + $(this).attr('idImage')).attr('src'));
+  //
+  OnJscGetDataAddFromAjax(sURL);
+}
+// -----------------------------------------------------------------
+// - 関数名：データ追加-Ajax
+// - 引　数：なし
+// - 戻り値：なし
+// - 備　考：なし
+// -----------------------------------------------------------------
+function OnJscGetDataAddFromAjax(sURL){
+  //
+  $.ajax({
+     type: "GET",
+     url: sURL
+  }).success(function(data) {
+  	//
+    $('#storyName').val(data.story_name);
+    $('#authorId').val(data.author_id);
+    $('#storySource').val(data.story_source);
+    $('#storySumChapter').val(data.story_sum_chapter);
+    $('#storyView').val(data.story_view);
+    $('#storyRating').val(data.story_rating);
+    $('#storyStatus').val(data.story_status);
+    $('#storyPrice').val(data.story_price);
+    //
+    var oStoryType = data.story_type.split(',');
+    for (var ix = 0; ix < oStoryType.length; ix++) {
+    	$("#storyType option[value ='"+ oStoryType[ix]+"']").prop("selected", true);
+    }
+    //
+    CKEDITOR.instances['storyIntro'].setData(data.story_intro);
+    //
+  });
+  //
 }

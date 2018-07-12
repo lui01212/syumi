@@ -62,7 +62,7 @@
 							      <label for="storyType">Loại Truyện</label>
 							      <select multiple  class="form-control" name="storyType[]" id="storyType">
 		        					@foreach($storyType as $type)
-		        						<option >{{$type ->type_name}}</option>
+		        						<option value="{{$type ->type_name}}">{{$type ->type_name}}</option>
 		        					@endforeach
 								  </select>
 							    </div>
@@ -128,7 +128,7 @@
 					<div class="form-row">
 						<div class="form-group col-md-12">
 						    <label for="storyIntro">Mô Tả</label>
-						    <textarea  name="storyIntro" class="form-control" id="editor1"></textarea>
+						    <textarea  name="storyIntro" class="form-control" id="storyIntro"></textarea>
 						</div>
 					</div>
 					<!--  -->
@@ -208,6 +208,7 @@
 		                            <th>Trạng Thái</th>
 		                            <th>Tính Phí</th>
 		                            <th>Flag</th>
+		                            <th style="width: 110px;"><em class="fa fa-cog"></em></th>
 		                        </tr>
 		                    </thead>
 		                    <tbody>
@@ -215,7 +216,7 @@
 	                    	<tr>
 	                            <td>{{$story ->story_name}}</td>
 	                            <td>
-	                            	<img src="{{ asset( 'images/' . $story ->story_image ) }}" alt="{{ $story ->story_image }}" width="120" height="120">
+	                            	<img id ="images{{$story ->story_id}}" src="{{ asset( 'images/' . $story ->story_image ) }}" alt="{{ $story ->story_image }}" width="120" height="120">
 	                            </td>
 	                            <td>{{$story ->author_name}}</td>
 	                            <td>{{$story ->story_source}}</td>
@@ -246,6 +247,8 @@
 	                            	{{__('false')}}
 	                            	@endif
 	                            </td>
+	                            <td><a idImage="images{{$story ->story_id}}" class="btn btn-default btn-edit border" href="listStoryMaster/loadData/{{$story ->story_id}}"><em class="fa fa-pencil"></em></a>
+                              	<a class="btn btn-danger btn-delete" href=""><em class="fa fa-trash"></em></a></td>
 	                        </tr>
 	                    	@endforeach
 		                    </tbody>
@@ -257,6 +260,6 @@
 	</div>
 	<!-- CKEDITOR -->
 	<script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
-	<script> CKEDITOR.replace('editor1'); </script>
+	<script> CKEDITOR.replace('storyIntro'); </script>
 	<!-- CKEDITOR-->
 @endsection
